@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <!-- <script type="text/javascript" src="/javascripts/render_font.js"></script> -->
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+	<title>Mood to Font</title>
+  </head>
+  <body>
+
+    <div class="base_container">
+      <h1 id="title">Words to Font</h1>
+      <div id="keyword_container">
+        <div class="wordLabel" id="label0"> Modern </div>
+        <div class="wordLabel" id="label1"> Old </div>
+        <div class="wordLabel" id="label2"> Goofy </div>
+        <div class="wordLabel" id="label3"> Happy </div>
+        <div class="wordLabel" id="label4"> Crisp </div>
+      </div>
+      <div id="keyword_container">
+        <div class="wordLabel" id="label5"> Computer </div>
+        <div class="wordLabel" id="label6"> Fancy </div>
+        <div class="wordLabel" id="label7"> Loud </div>
+        <div class="wordLabel" id="label8"> Rich </div>
+        <div class="wordLabel" id="label9"> Terrible </div>
+      </div>
+      <div id="font_display_container" class="base_container font_wrapper">
+      <div style="height: 30px;"></div>
+      </div>
+    </div>
+	  	
+  </body>
+</html>

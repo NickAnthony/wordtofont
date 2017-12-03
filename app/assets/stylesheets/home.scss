@@ -1,0 +1,50 @@
+#title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+}
+
+.wordLabel {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  width: 115px;
+  height: 25px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  border-radius: 5px;
+  text-align: center;
+  margin: 5px;
+}
+
+.wordLabel:hover { 
+    background-color: #E0E0E0;
+}
+
+.font_display {
+  height: 60px;
+  font-size: 40px;
+  position: relative;
+  text-align: center;
+
+}
+
+#keyword_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.base_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#font_display_container {
+  border-top: 1px solid gray;
+  width: 60%;
+}
+

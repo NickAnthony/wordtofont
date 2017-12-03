@@ -1,0 +1,57 @@
+/* line 1, /Users/nickyanthony/Dropbox/wordtofont/app/assets/stylesheets/home.scss */
+#title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+}
+
+/* line 6, /Users/nickyanthony/Dropbox/wordtofont/app/assets/stylesheets/home.scss */
+.wordLabel {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  width: 115px;
+  height: 25px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  border-radius: 5px;
+  text-align: center;
+  margin: 5px;
+}
+
+/* line 20, /Users/nickyanthony/Dropbox/wordtofont/app/assets/stylesheets/home.scss */
+.wordLabel:hover {
+  background-color: #E0E0E0;
+}
+
+/* line 24, /Users/nickyanthony/Dropbox/wordtofont/app/assets/stylesheets/home.scss */
+#keyword_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+/* line 31, /Users/nickyanthony/Dropbox/wordtofont/app/assets/stylesheets/home.scss */
+.base_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+
+ */
+

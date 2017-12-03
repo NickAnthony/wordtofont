@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  word: MyString
+  font_name: MyString
+  font_id: 1
+
+two:
+  word: MyString
+  font_name: MyString
+  font_id: 1
