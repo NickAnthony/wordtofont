@@ -18,17 +18,20 @@ class Api::V1::DescriptorsController < ApiController
     font_name = Font.find(params[:font_id]).name;
     full_description = params[:description].split(',')
     full_description.length.times do |i|
-      @descriptor = Descriptor.new(
-          :word => full_description[i].strip,
-          :font_name => font_name,
-          :font_id => params[:font_id]
-        )
-      @descriptor.save
-      if !(@descriptor.save)
-        puts "Failed to save desriptor!!!"
-        # Failed to save desriptor, so throw error and return
-        render json: @descriptor.errors, status: :unprocessable_entity
-        return
+      # If this description for this font has not yet been created, add it
+      if !(Descriptor.find_by(word: full_description[i].strip, font_name: font_name).present?)
+        @descriptor = Descriptor.new(
+            :word => full_description[i].strip,
+            :font_name => font_name,
+            :font_id => params[:font_id]
+          )
+        @descriptor.save
+        if !(@descriptor.save)
+          puts "Failed to save desriptor!!!"
+          # Failed to save desriptor, so throw error and return
+          render json: @descriptor.errors, status: :unprocessable_entity
+          return
+        end
       end
     end
   end

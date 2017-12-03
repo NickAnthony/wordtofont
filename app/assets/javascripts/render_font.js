@@ -47,6 +47,17 @@ async function read_in_fonts(data) {
 
 }
 
+// Do a search font 
+function find_fonts(search_word) {
+	$.ajax({
+      url: '/api/v1/fonts',
+      type: 'GET',
+      dataType: 'json',
+      data: { "descriptor": search_word.trim() },
+      success: function(data) { render_fonts(data); },
+      error: function() { console.log("Error in get request"); },
+    });
+}
 
 // When a label is clicked, get all related fonts
 function label_clicked(id){
@@ -58,15 +69,16 @@ function label_clicked(id){
       dataType: 'json',
       data: { "descriptor": word.trim() },
       success: function(data) { render_fonts(data); },
-      error: function() { alert('Error!'); },
+      error: function() { console.log("Error in get request"); },
     });
 }
 
 // format and render all fonts
 function render_fonts(data) {
-	var font_display = document.getElementById('font_display_container');
-	while (font_display.childElementCount > 1){
-		font_display.removeChild(font_display.lastChild);
+	// If no fonts were found, just return
+	remove_all_but_one_child('font_display_container');
+	if (data.data.length == 0) {
+		return;
 	}
 	var num_fonts = data.data.length;
   	for (var i = 0; i < num_fonts; i++) {
@@ -95,10 +107,7 @@ function get_random_font() {
 }
 
 function render_random_font(data) {
-	var font_display = document.getElementById('font_display_container');
-	if (font_display.childElementCount > 1){
-		font_display.removeChild(font_display.lastChild);
-	}
+	remove_all_but_one_child('font_display_container');
 	WebFont.load({
     	google: {
       		families: [data.data.name]
@@ -119,6 +128,13 @@ function log_description(description, font_id) {
       success: function(data) {  },
       error: function() { alert('Failed to log description for font'); },
     });
+}
+
+function remove_all_but_one_child(ele_id) {
+	var element = document.getElementById(ele_id);
+	while (element.childElementCount > 1){
+		element.removeChild(element.lastChild);
+	}
 }
 
 
