@@ -1,23 +1,23 @@
-$(document).ready(function() {
-	// Add an event listener to every label
-	for (var i = 0; i < 10; i++) {
-		var label_str = "label";
-		label_str += i.toString();
-	    document.getElementById(label_str).addEventListener("click", function() {
-		    label_clicked(this.id);
-		});
-	}
+// $(document).ready(function() {
+// 	// Add an event listener to every label
+// 	for (var i = 0; i < 10; i++) {
+// 		var label_str = "label";
+// 		label_str += i.toString();
+// 	    document.getElementById(label_str).addEventListener("click", function() {
+// 		    label_clicked(this.id);
+// 		});
+// 	}
 
-	// Read and store all Google Fonts
-	// $.ajax({
- //      url: 'https://www.googleapis.com/webfonts/v1/webfonts?sort=popularity&key=YOUR_API_KEY',
- //      type: 'GET',
- //      dataType: 'json',
- //      success: function(data) { read_in_fonts(data); },
- //      error: function() { alert('Error!'); },
- //    });
+// 	// Read and store all Google Fonts
+// 	// $.ajax({
+//  //      url: 'https://www.googleapis.com/webfonts/v1/webfonts?sort=popularity&key=YOUR_API_KEY',
+//  //      type: 'GET',
+//  //      dataType: 'json',
+//  //      success: function(data) { console.log(data.items); },
+//  //      error: function() {  },
+//  //    });
 
-});
+// });
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -72,5 +72,23 @@ function render_fonts(data) {
   	}
 }
 
+function get_random_font() {
+	var random_id = Math.floor((Math.random() * 2201) + 1);
+	console.log(random_id);
+	$.ajax({
+      url: '/api/v1/fonts',
+      type: 'GET',
+      dataType: 'json',
+      data: { "font_id": random_id },
+      success: function(data) { render_random_font(data); },
+      error: function() { alert('Error!'); },
+    });
+}
+
+function render_random_font(data) {
+	console.log(data.data.name);
+	$("#font_display_container").append("<div id='current_font' class='font_display'>" + data.data.name + ": how would you describe this font?</div>")
+  	$("#current_font").css("font-family", data.data.name);
+}
 
 

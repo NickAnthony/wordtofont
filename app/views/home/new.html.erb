@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+	<title>Mood to Font</title>
+  </head>
+  <body>
+
+    <div class="base_container">
+      <h1 id="title">Words to Font</h1>
+      <div id="keyword_container">
+        <div id="add_description"> Let's add some descriptions </div>
+      </div>
+      <div id="font_display_container" class="base_container font_wrapper">
+        <div style="height: 60px;"></div>
+      </div>
+    </div>
+	
+  <script type="text/javascript">
+    $(document).ready(function() {
+      get_random_font();
+    });
+  </script>
+  </body>
+</html>

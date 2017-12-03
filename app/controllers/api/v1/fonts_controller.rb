@@ -3,10 +3,14 @@ class Api::V1::FontsController < ApiController
 
   # GET /fonts
   def index
-    @fonts = Font.joins(:descriptors).where(:descriptors => {:word => params[:descriptor]}).where("descriptors.font_name = fonts.name")
-    puts @fonts
-    # render json: @fonts
-    render json: {status: 'SUCCESS', message: 'Loaded selected fonts', data: @fonts}, status: :ok
+    # If we need to get a specific font
+    if params[:font_id].present?
+      @font = Font.find(params[:font_id])
+      render json: {status: 'SUCCESS', message: 'Loaded selected fonts', data: @font}, status: :ok
+    else
+      @fonts = Font.joins(:descriptors).where(:descriptors => {:word => params[:descriptor]}).where("descriptors.font_name = fonts.name")
+      render json: {status: 'SUCCESS', message: 'Loaded selected fonts', data: @fonts}, status: :ok
+    end
   end
 
   # GET /fonts/1
@@ -16,9 +20,11 @@ class Api::V1::FontsController < ApiController
 
   # POST /fonts
   def create
+    # If font is already in database, don't add it again
     if Font.find_by(name: params[:name], family: params[:family], style: params[:style]).present?
       render json: {status: 'SUCCESS', message: 'Font already exists', data: ''}, status: :ok
     else
+      # Font is not in database, so add it
       @font = Font.new(
         :name => params[:name], 
         :family => params[:family], 

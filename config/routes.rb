@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 	    end 
 	end
 	# get '*other', to: 'home#index'
+	get 'home/new', to: 'home#new'
 	get 'home/index', to: 'home#index'
 	root 'home#index'
 

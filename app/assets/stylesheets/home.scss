@@ -17,9 +17,14 @@
   vertical-align: middle;
   margin: 5px;
 }
-
 .wordLabel:hover { 
   background-color: #E0E0E0;
+}
+
+#add_description {
+  font-weight: 300;
+  font-size: 20px;
+  margin: 20px;
 }
 
 .font_display {
@@ -28,6 +33,41 @@
   position: relative;
   text-align: center;
 }
+
+.add_button {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  color: white;
+  text-decoration: none !important;
+  font-size: 20px;
+  width: 200px;
+  height: 40px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  border-radius: 5px;
+  text-align: center;
+  vertical-align: middle;
+  margin: 5px;
+  position: fixed;
+  right: 5%;
+  top: 5%;
+}
+
+.add_button:hover {
+  color: white;
+  background-color: #2196F3;
+  border-color: transparent; 
+}
+
+.no_underline {
+  text-decoration: none !important;
+}
+.no_underline:hover {
+  text-decoration: none !important;
+  background-color:transparent !important;
+}
+
 
 #keyword_container {
   display: flex;

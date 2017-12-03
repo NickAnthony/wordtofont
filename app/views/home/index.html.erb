@@ -8,7 +8,9 @@
 	<title>Mood to Font</title>
   </head>
   <body>
-
+    <div class='add_button'>
+      <%= link_to("Add Font Descriptors", { :controller => 'home', :action => 'new' }, class: "no_underline") %>
+    </div>
     <div class="base_container">
       <h1 id="title">Words to Font</h1>
       <div id="keyword_container">
@@ -29,6 +31,19 @@
       <div style="height: 30px;"></div>
       </div>
     </div>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      // Add an event listener to every label
+      for (var i = 0; i < 10; i++) {
+        var label_str = "label";
+        label_str += i.toString();
+          document.getElementById(label_str).addEventListener("click", function() {
+            label_clicked(this.id);
+        });
+      }
+    });
+  </script>
 	  	
   </body>
 </html>
