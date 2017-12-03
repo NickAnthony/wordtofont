@@ -9,28 +9,30 @@ $(document).ready(function() {
 	}
 });
 
+
+// When a label is clicked, get all related fonts
 function label_clicked(id){
 	var word_label = "#" + id;
 	var word = $(word_label).text();
-	// alert(word);
-	$.get("/api/v1/fonts", function(data){
-		console.log(data.data[0].name);
-	  	// alert("Data: " + data);
-	  	var num_fonts = data.data.length;
-	  	console.log(num_fonts);
-	  	for (var i = 0; i < num_fonts; i++) {
-	  		$("#font_display_container").append("<div id='font" + i + "' class='font_display'>" + data.data[i].name + "</div>")
-	  		console.log("<div id='font" + i + "' class='font_display'>" + data.data[i].name + "</div>");
-	  		$("#font" + i).css("font-family", data.data[i].name);
-	  		console.log("#font" + i);
-	  	}
-	  	$("#font_display_container").append("<div id='font" + 1 + "' class='font_display'>" + data.data[0].name + "</div>")
-  		console.log("<div id='font" + 1 + "' class='font_display'>" + data.data[0].name + "</div>");
-  		$("#font" + 1).css("font-family", data.data[0].name);
-  		console.log("#font" + 1);
-	});	
+	$.ajax({
+      url: '/api/v1/fonts',
+      type: 'GET',
+      dataType: 'json',
+      data: { "descriptor": word.trim() },
+      success: function(data) { render_fonts(data); },
+      error: function() { alert('Error!'); },
+    });
 }
 
+
+// format and render all fonts
+function render_fonts(data) {
+	var num_fonts = data.data.length;
+  	for (var i = 0; i < num_fonts; i++) {
+  		$("#font_display_container").append("<div id='font" + i + "' class='font_display'>" + data.data[i].name + "</div>")
+  		$("#font" + i).css("font-family", data.data[i].name);
+  	}
+}
 
 
 

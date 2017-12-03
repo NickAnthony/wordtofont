@@ -3,8 +3,8 @@ class Api::V1::FontsController < ApiController
 
   # GET /fonts
   def index
-    @fonts = Font.all
-
+    @fonts = Font.joins(:descriptors).where(:descriptors => {:word => params[:descriptor]}).where("descriptors.font_name = fonts.name")
+    puts @fonts
     # render json: @fonts
     render json: {status: 'SUCCESS', message: 'Loaded selected fonts', data: @fonts}, status: :ok
   end
