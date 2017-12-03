@@ -16,12 +16,19 @@ class Api::V1::FontsController < ApiController
 
   # POST /fonts
   def create
-    @font = Font.new(font_params)
-
-    if @font.save
-      render json: @font, status: :created, location: @font
+    if Font.find_by(name: params[:name], family: params[:family], style: params[:style]).present?
+      render json: {status: 'SUCCESS', message: 'Font already exists', data: ''}, status: :ok
     else
-      render json: @font.errors, status: :unprocessable_entity
+      @font = Font.new(
+        :name => params[:name], 
+        :family => params[:family], 
+        :style => params[:style], 
+      )
+      if @font.save
+        render json: @font, status: :created, location: @font
+      else
+        render json: @font.errors, status: :unprocessable_entity
+      end
     end
   end
 
