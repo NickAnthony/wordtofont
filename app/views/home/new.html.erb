@@ -8,7 +8,9 @@
 	<title>Mood to Font</title>
   </head>
   <body>
-
+    <%= link_to({ :controller => 'home', :action => 'index' }, class: "no_underline") do %>
+      <div id="previous_button">&#8249;</div>
+    <% end %>
     <div class="base_container">
       <h1 id="title">Words to Font</h1>
       <div id="keyword_container">
@@ -17,11 +19,29 @@
       <div id="font_display_container" class="base_container font_wrapper">
         <div style="height: 60px;"></div>
       </div>
+      <button id="new_font_button" class="button">
+        Skip This Font
+      </button>
+      <div id="input_direction">
+        enter one word descriptions below, separated by a comma
+      </div>
+      <input type="text" class="descript_input" value="" id="description_input" placeholder="..."/>
     </div>
 	
   <script type="text/javascript">
+    var current_font_id = 1;
     $(document).ready(function() {
-      get_random_font();
+      current_font_id = get_random_font();
+      document.getElementById("new_font_button").addEventListener("click", function() {
+        current_font_id = get_random_font();
+      });
+      document.getElementById("description_input").addEventListener('keypress', function (e) {
+          if (e.keyCode == 13) {
+              log_description(this.value, current_font_id);
+              this.value = "";
+              current_font_id = get_random_font();
+          }
+      }, false);
     });
   </script>
   </body>

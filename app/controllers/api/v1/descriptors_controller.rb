@@ -15,12 +15,21 @@ class Api::V1::DescriptorsController < ApiController
 
   # POST /descriptors
   def create
-    @descriptor = Descriptor.new(descriptor_params)
-
-    if @descriptor.save
-      render json: @descriptor, status: :created, location: @descriptor
-    else
-      render json: @descriptor.errors, status: :unprocessable_entity
+    font_name = Font.find(params[:font_id]).name;
+    full_description = params[:description].split(',')
+    full_description.length.times do |i|
+      @descriptor = Descriptor.new(
+          :word => full_description[i].strip,
+          :font_name => font_name,
+          :font_id => params[:font_id]
+        )
+      @descriptor.save
+      if !(@descriptor.save)
+        puts "Failed to save desriptor!!!"
+        # Failed to save desriptor, so throw error and return
+        render json: @descriptor.errors, status: :unprocessable_entity
+        return
+      end
     end
   end
 

@@ -62,19 +62,27 @@ function label_clicked(id){
     });
 }
 
-
 // format and render all fonts
 function render_fonts(data) {
+	var font_display = document.getElementById('font_display_container');
+	while (font_display.childElementCount > 1){
+		font_display.removeChild(font_display.lastChild);
+	}
 	var num_fonts = data.data.length;
   	for (var i = 0; i < num_fonts; i++) {
+  		WebFont.load({
+	    	google: {
+	      		families: [data.data[i].name]
+	   	 	}
+	  	});
   		$("#font_display_container").append("<div id='font" + i + "' class='font_display'>" + data.data[i].name + "</div>")
   		$("#font" + i).css("font-family", data.data[i].name);
   	}
 }
 
+
 function get_random_font() {
 	var random_id = Math.floor((Math.random() * 2201) + 1);
-	console.log(random_id);
 	$.ajax({
       url: '/api/v1/fonts',
       type: 'GET',
@@ -83,12 +91,34 @@ function get_random_font() {
       success: function(data) { render_random_font(data); },
       error: function() { alert('Error!'); },
     });
+    return random_id;
 }
 
 function render_random_font(data) {
-	console.log(data.data.name);
-	$("#font_display_container").append("<div id='current_font' class='font_display'>" + data.data.name + ": how would you describe this font?</div>")
+	var font_display = document.getElementById('font_display_container');
+	if (font_display.childElementCount > 1){
+		font_display.removeChild(font_display.lastChild);
+	}
+	WebFont.load({
+    	google: {
+      		families: [data.data.name]
+   	 	}
+  	});
+	$("#font_display_container").append("<div id='current_font' class='single_font_display'>" + data.data.name + "... The quick brown fox jumped over the lazy dog.</div>")
   	$("#current_font").css("font-family", data.data.name);
+}
+
+function log_description(description, font_id) {
+	$.ajax({
+      url: '/api/v1/descriptors',
+      type: 'POST',
+      data: { 
+      	"description": description.trim(),
+      	"font_id": font_id,
+      },
+      success: function(data) {  },
+      error: function() { alert('Failed to log description for font'); },
+    });
 }
 
 

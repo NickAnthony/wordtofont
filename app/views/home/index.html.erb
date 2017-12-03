@@ -8,9 +8,9 @@
 	<title>Mood to Font</title>
   </head>
   <body>
-    <div class='add_button'>
-      <%= link_to("Add Font Descriptors", { :controller => 'home', :action => 'new' }, class: "no_underline") %>
-    </div>
+    <%= link_to({ :controller => 'home', :action => 'new' }, class: "no_underline") do %>
+      <div class='add_button'> Add Font Descriptors </div>
+    <% end %>
     <div class="base_container">
       <h1 id="title">Words to Font</h1>
       <div id="keyword_container">
