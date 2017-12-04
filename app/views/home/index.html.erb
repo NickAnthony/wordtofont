@@ -17,14 +17,14 @@
         <input type="text" value="" id="search_input_bar" placeholder="Start typing adjectives and fonts will appear below... "/>
       </div>
       <div id="font_display_container" class="base_container font_wrapper">
-      <div style="height: 30px;"></div>
+      <div style="height: 40px;"></div>
       </div>
     </div>
 
   <script type="text/javascript">
     $(document).ready(function() {
       document.getElementById("search_input_bar").addEventListener('keyup', function () {
-          find_fonts(this.value);
+        find_fonts(this.value);
       }, false);
     });
   </script>
