@@ -1,24 +1,20 @@
-# README
+# Word To Font
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## What is it?
+The right font is hard to find, especially when you know little about typefaces, fonts, typography, or design.  The purpose of this project is to crowd-source adjectives and words to be associated with fonts. In turn, users can search abstract words, moods, thoughts, or adjectives and get a list of fonts related to that word.
 
-Things you may want to cover:
+**In effect, it's a font search, on steroids.**
 
-* Ruby version
+## How can I access it?
+The website will be launched soon.  A link will be posted when it's live.
 
-* System dependencies
+## What is behind it?
+Backend: `Ruby-on-Rails` 
 
-* Configuration
+Frontend: `html`, `css`, and `javascript`
 
-* Database creation
+Built with some `love` and `coffee`
 
-* Database initialization
+## Have an idea for changes or additions?
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Please shoot me an email! *nicholas_anthony@brown.edu*
